@@ -1,0 +1,6 @@
+data/*
+volumes/*
+*.env
+.venv
+.vscode
+docker-compose.yaml

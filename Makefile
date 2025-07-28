@@ -15,8 +15,13 @@ prepare:
 
 
 migrate:
-	MAIN_ARGS="python main.py migrate" $(MAKE) prepare
+	MAIN_ARGS="python cli.py migrate" $(MAKE) prepare
+	docker compose -f $(DOCKER_PATH)/docker-compose.yaml up --force-recreate -d --build
+
+run:
+	MAIN_ARGS="python cli.py serve" $(MAKE) prepare
 	docker compose -f $(DOCKER_PATH)/docker-compose.yaml up --force-recreate -d --build
 
 logs:
 	docker compose -f $(DOCKER_PATH)/docker-compose.yaml logs -f
+

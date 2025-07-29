@@ -1,5 +1,6 @@
 import asyncio
 from collections import defaultdict
+from random import uniform
 from statistics import median
 
 import asyncpg
@@ -38,7 +39,14 @@ async def generate_needs(conn: asyncpg.Connection) -> None:
 		grouped[key].append(float(row["stock"]))
 
 	values = [
-		(branch_id, product_id, round(median(stocks), 2))
+		(
+			branch_id,
+			product_id,
+			round(
+				median(stocks) * uniform(1.2, 2.0),  # noqa: S311
+				2,
+			),  # специально увеличиваем потребность, иначе все отфильтруется
+		)
 		for (branch_id, product_id), stocks in grouped.items()
 	]
 

@@ -9,4 +9,6 @@ class DistributionRow(BaseModel):
 	product_id: UUID
 	demand: Decimal
 	available: Decimal
+	min_qty: Decimal
 	qty: Decimal
+	logdays: int | None

@@ -72,6 +72,13 @@ DEFAULT_PRODUCTS = """
 					);
 					"""
 
+DEFAULT_PRODUCTS_VOL = """
+					CREATE TABLE logistics.products_vol (
+					product_id UUID PRIMARY KEY,
+					volume_per_unit FLOAT8 NOT NULL
+					);
+					"""
+
 MIGRATIONS = OrderedDict(
 	{
 		"001_create_schema": DEFAULT_SCHEMA,
@@ -82,5 +89,6 @@ MIGRATIONS = OrderedDict(
 		"006_create_min_shipment": DEFAULT_SHIPMENT,
 		"007_create_storage_limits": DEFAULT_LIMITS,
 		"008_create_products": DEFAULT_PRODUCTS,
+		"009_create_products_vol": DEFAULT_PRODUCTS_VOL,
 	}
 )

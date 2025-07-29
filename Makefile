@@ -30,6 +30,8 @@ etl-populate-history:
 etl-populate-products:
 	docker compose -f $(DOCKER_PATH)/docker-compose.yaml exec backend python etl/populate_products.py
 
+etl-populate-products-vol:
+	docker compose -f $(DOCKER_PATH)/docker-compose.yaml exec backend python etl/populate_products_vol.py
 etl-generate-logdays:
 	docker compose -f $(DOCKER_PATH)/docker-compose.yaml exec backend python etl/generate_logdays.py
 
@@ -39,4 +41,4 @@ etl-generate-needs:
 etl-generate-limits:
 	docker compose -f $(DOCKER_PATH)/docker-compose.yaml exec backend python etl/generate_shipment_and_limits.py
 
-etl-populate: etl-populate-history etl-populate-products etl-generate-logdays etl-generate-needs etl-generate-limits
+etl-populate: etl-populate-history etl-populate-products etl-generate-logdays etl-generate-needs etl-generate-limits etl-populate-products-vol

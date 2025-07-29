@@ -30,7 +30,14 @@ async def populate_min_shipment(conn: asyncpg.Connection) -> None:
 	""")
 
 	values = [
-		(r["branch_id"], r["product_id"], random.randint(1, 5))  # noqa: S311
+		(
+			r["branch_id"],
+			r["product_id"],
+			round(
+				random.uniform(0.01, 0.05),  # noqa: S311
+				2,
+			),  # <-- специально занижаем qty, иначе отфильтруется
+		)
 		for r in rows
 	]
 

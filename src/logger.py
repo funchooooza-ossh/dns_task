@@ -5,9 +5,7 @@ import structlog
 from structlog.processors import (
 	EventRenamer,
 	JSONRenderer,
-	StackInfoRenderer,
 	TimeStamper,
-	format_exc_info,
 )
 from structlog.stdlib import PositionalArgumentsFormatter, add_log_level
 
@@ -28,8 +26,6 @@ def setup_logger() -> None:
 		TimeStamper(fmt="iso"),
 		add_log_level,
 		PositionalArgumentsFormatter(),
-		StackInfoRenderer(),
-		format_exc_info,
 		EventRenamer("msg"),
 		JSONRenderer(),
 	]

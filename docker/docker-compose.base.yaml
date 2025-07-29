@@ -31,6 +31,7 @@ services:
       - ../environments/.env
     volumes:
       - ../src:/app/src
+      - ../data/:/app/data:ro
     command: "${MAIN_ARGS}"
 
 volumes:

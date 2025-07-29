@@ -15,7 +15,10 @@ authors = [ { name = "me" } ]
 dependencies = [
     "asyncpg >=0.30.0,<0.31.0",
     "fastapi>=0.116.1",
+    "pandas>=2.3.1",
     "python-dotenv>=1.1.1",
+    "requests>=2.32.4",
+    "streamlit>=1.47.1",
     "structlog>=25.4.0",
     "typer>=0.16.0",
     "uvicorn>=0.35.0",

@@ -20,6 +20,10 @@ migrate:
 run:
 	MAIN_ARGS="python cli.py serve" $(MAKE) prepare
 	docker compose -f $(DOCKER_PATH)/docker-compose.yaml up --force-recreate -d --build
+	$(MAKE) ui
+
+ui:
+	docker compose -f $(DOCKER_PATH)/docker-compose.yaml exec backend python cli.py visualize
 
 logs:
 	docker compose -f $(DOCKER_PATH)/docker-compose.yaml logs -f

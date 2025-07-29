@@ -15,8 +15,7 @@ prepare:
 
 
 migrate:
-	MAIN_ARGS="python cli.py migrate" $(MAKE) prepare
-	docker compose -f $(DOCKER_PATH)/docker-compose.yaml up --force-recreate -d --build
+	docker compose -f $(DOCKER_PATH)/docker-compose.yaml exec backend python cli.py migrate
 
 run:
 	MAIN_ARGS="python cli.py serve" $(MAKE) prepare
@@ -25,3 +24,19 @@ run:
 logs:
 	docker compose -f $(DOCKER_PATH)/docker-compose.yaml logs -f
 
+etl-populate-history:
+	docker compose -f $(DOCKER_PATH)/docker-compose.yaml exec backend python etl/populate_history.py
+
+etl-populate-products:
+	docker compose -f $(DOCKER_PATH)/docker-compose.yaml exec backend python etl/populate_products.py
+
+etl-generate-logdays:
+	docker compose -f $(DOCKER_PATH)/docker-compose.yaml exec backend python etl/generate_logdays.py
+
+etl-generate-needs:
+	docker compose -f $(DOCKER_PATH)/docker-compose.yaml exec backend python etl/generate_needs.py
+
+etl-generate-limits:
+	docker compose -f $(DOCKER_PATH)/docker-compose.yaml exec backend python etl/generate_shipment_and_limits.py
+
+etl-populate: etl-populate-history etl-populate-products etl-generate-logdays etl-generate-needs etl-generate-limits

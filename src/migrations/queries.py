@@ -65,6 +65,12 @@ DEFAULT_LIMITS = """
 				);
 				"""
 
+DEFAULT_PRODUCTS = """
+					CREATE TABLE IF NOT EXISTS logistics.products (
+						product_id UUID PRIMARY KEY,
+						category_id UUID NOT NULL
+					);
+					"""
 
 MIGRATIONS = OrderedDict(
 	{
@@ -75,5 +81,6 @@ MIGRATIONS = OrderedDict(
 		"005_create_logdays": DEFAULT_LOGDAYS,
 		"006_create_min_shipment": DEFAULT_SHIPMENT,
 		"007_create_storage_limits": DEFAULT_LIMITS,
+		"008_create_products": DEFAULT_PRODUCTS,
 	}
 )

@@ -24,6 +24,7 @@ services:
     container_name: app-backend
     ports:
       - "8000:8000"
+      - "8501:8501"
     depends_on:
       postgres:
         condition: service_healthy
@@ -33,6 +34,7 @@ services:
       - ../src:/app/src
       - ../data/:/app/data:ro
     command: "${MAIN_ARGS}"
+
 
 volumes:
   postgres-data:
